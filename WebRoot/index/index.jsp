@@ -34,7 +34,7 @@ body {
     width: 100%;  
     height: 100%;  
     max-width: 1366px;  
-   
+    /*这里放置背景图及图片属性*/
     background-repeat: no-repeat;  
     background-color: #666;  
     -webkit-background-size: cover;  
@@ -55,6 +55,29 @@ body {
         max-width: 1920px;  
         max-height: 1080px;  
     }  
+}
+
+#search
+{
+	width:540px;/*定义搜索框的宽度*/
+	height:36px;/*定义搜索框的高度*/
+	font-size:18px;/*定义搜索框文字大小*/
+	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;/*定义搜索框的字体，妈蛋我不知道百度搜索框是什么字体，你们凑合看吧*/
+}
+#submit
+{
+	position:static;/*搜索框定位，绝对定位，请大家帮我看看，这种定位方式是不是有问题，共勉学习*/
+	left:547px;/*定位，左边开始547px*/
+	width:100px;/*提交按钮宽度*/
+	height:36px;/*提交按钮高度*/
+	background:#3385ff;/*提交按钮背景颜色*/
+	color:#FFFFFF;/*提交按钮文字颜色。白色*/
+	font-size:14px;/*提交按钮文字大小*/
+	border:1px solid #4791ff;/*提交按钮边框定义，如果不定义就是默认的按钮效果，好难看的。*/
+}
+#fromDiv{
+	margin:20% 0% 0% 0%;
+	text-align:center;
 }
 </style>
 <script type="text/javascript">
@@ -129,12 +152,75 @@ body {
 	    }  
 	  };  
 	  resize();  
+	  
+	  
+	 
+	  
 	})(jQuery); 
+	
+	$(function(){
+		$("#submit").click(function(){
+			$.ajax({
+                cache: true,
+                type: "POST",
+                url:"/tuling/getContent",
+                data:$('#textForm').serialize(),// 你的formid
+                async: false,
+                error: function(request) {
+                    console.info("Connection error");
+                },
+                success: function(data) {
+                    $("#answerDiv").append(data.showMessage+"<br/>");
+                    $("#search").val("");
+                }
+            });
+			
+		});
+		
+		function enterClick(){
+		
+			return false;
+		}
+		
+	})
+	/* enter不自动提交表单 */
+	 document.onkeydown = function(event) {
+	        var target, code, tag;
+	        if (!event) {
+	            event = window.event; //针对ie浏览器
+	            target = event.srcElement;
+	            code = event.keyCode;
+	            if (code == 13) {
+	                tag = target.tagName;
+	                if (tag == "TEXTAREA") { return true; }
+	                else { return false; }
+	            }
+	        }
+	        else {
+	            target = event.target; //针对遵循w3c标准的浏览器，如Firefox
+	            code = event.keyCode;
+	            if (code == 13) {
+	                tag = target.tagName;
+	                if (tag == "INPUT") { return false; }
+	                else { return true; }
+	            }
+	        }
+	    };
+	
 	</script>
 </head>
 <body>
 	<span id="spanTitle">上升ing...</span>
+	
+	<div id="answerDiv" style="color: white;" ></div>
 	<div id="bgDiv"></div>
-	<div id="bgBox"></div>
+	<div id="bgBox" style="display: none" >
+		<div id="fromDiv" >
+			<form id="textForm" method="get" >
+				<input name="text" type="text" id="search" tabindex="q" >
+				<input type="button" id="submit" value="上升">
+			</form>
+		</div>
+	</div>
 </body>
 </html>
