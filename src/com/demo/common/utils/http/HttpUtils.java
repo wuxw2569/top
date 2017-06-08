@@ -10,6 +10,13 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mysql.jdbc.StringUtils;
+
 
 /**
  * 用于模拟HTTP请求中GET/POST方式 
@@ -17,6 +24,21 @@ import javax.net.ssl.HttpsURLConnection;
  *
  */
 public class HttpUtils {  
+	
+	/**
+	 * <p class="detail">
+	 * 功能：无参数请求链接
+	 * </p>
+	 * @author wuxw
+	 * @param url
+	 * @return 
+	 * @throws
+	 */
+	public static String sendGet(String url){
+		
+		return sendGet(url, null);
+	}
+	
     /** 
      * 发送GET请求 
      *  
@@ -31,15 +53,20 @@ public class HttpUtils {
         BufferedReader in = null;// 读取响应输入流  
         StringBuffer sb = new StringBuffer();// 存储参数  
         String params = "";// 编码之后的参数
+
+   	 	String full_url = ""; 
         try {
+        	if(parameters==null || parameters.size()==0){
+        		full_url = url;
             // 编码请求参数  
-            if(parameters.size()==1){
+        	}else if(parameters.size()==1){
                 for(String name:parameters.keySet()){
                     sb.append(name).append("=").append(
                             java.net.URLEncoder.encode(parameters.get(name),  
                             "UTF-8"));
                 }
                 params=sb.toString();
+                params = url + "?" + params; 
             }else{
                 for (String name : parameters.keySet()) {  
                     sb.append(name).append("=").append(  
@@ -48,9 +75,11 @@ public class HttpUtils {
                 }  
                 String temp_params = sb.toString();  
                 params = temp_params.substring(0, temp_params.length() - 1);  
+                
+                params = url + "?" + params; 
             }
-            String full_url = url + "?" + params; 
-            System.out.println(full_url); 
+            
+           
             // 创建URL对象  
             java.net.URL connURL = new java.net.URL(full_url);  
             // 打开URL连接  
@@ -91,6 +120,19 @@ public class HttpUtils {
         return result ;
     }  
   
+    /**
+     * <p class="detail">
+     * 功能：无参数post
+     * </p>
+     * @author wuxw
+     * @param url
+     * @return 
+     * @throws
+     */
+    public static String sendPost(String url) {  
+    	return sendPost(url,null);
+    }
+    
     /** 
      * 发送POST请求 
      *  
@@ -106,9 +148,11 @@ public class HttpUtils {
         PrintWriter out = null;  
         StringBuffer sb = new StringBuffer();// 处理请求参数  
         String params = "";// 编码之后的参数  
-        try {  
-            // 编码请求参数  
-            if (parameters.size() == 1) {  
+        try {
+        	if(parameters==null || parameters.size() == 0){
+        		params = "";
+        		// 编码请求参数  
+        	} else if (parameters.size() == 1) {  
                 for (String name : parameters.keySet()) {  
                     sb.append(name).append("=").append(  
                             java.net.URLEncoder.encode(parameters.get(name),  
@@ -176,9 +220,14 @@ public class HttpUtils {
      * @param args 
      */  
     public static void main(String[] args) {  
-        Map<String, String> parameters = new HashMap<String, String>();  
-        parameters.put("q", "肖申克");  
-        String result =sendPost("https://api.douban.com/v2/movie/subject/1295644", parameters);
+        String result =sendPost("http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=10");
         System.out.println(result); 
+        
+		if(StringUtils.isNullOrEmpty(result) == false){
+			JSONObject imgHtml = JSONObject.fromObject(result);
+			JSONArray imgsArray = imgHtml.getJSONArray("images");
+			System.out.println(imgsArray.toString());
+		}
+        
     }  
 }  
