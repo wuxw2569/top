@@ -7,10 +7,20 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+<meta http-equiv="keywords" content="上升,keyword2,keyword3">
+<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery.scrollTo-min.js"></script>
 <link rel="icon" href="../img/toping2.ico" type="image/x-icon"/>
+<script  type="text/javascript" >
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1a00bdc215756c02925a322ce18ab928";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 <style type="text/css">
 body {  
     margin: 0;  
@@ -55,25 +65,6 @@ body {
         max-width: 1920px;  
         max-height: 1080px;  
     }  
-}
-
-#search
-{
-	width:540px;/*定义搜索框的宽度*/
-	height:36px;/*定义搜索框的高度*/
-	font-size:18px;/*定义搜索框文字大小*/
-	font-family:"Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;/*定义搜索框的字体，妈蛋我不知道百度搜索框是什么字体，你们凑合看吧*/
-}
-#submit
-{
-	position:static;/*搜索框定位，绝对定位，请大家帮我看看，这种定位方式是不是有问题，共勉学习*/
-	left:547px;/*定位，左边开始547px*/
-	width:100px;/*提交按钮宽度*/
-	height:36px;/*提交按钮高度*/
-	background:#3385ff;/*提交按钮背景颜色*/
-	color:#FFFFFF;/*提交按钮文字颜色。白色*/
-	font-size:14px;/*提交按钮文字大小*/
-	border:1px solid #4791ff;/*提交按钮边框定义，如果不定义就是默认的按钮效果，好难看的。*/
 }
 </style>
 
@@ -278,13 +269,13 @@ aside ul li .color {
     justify-content: flex-end;
     align-items: center;
     user-select: none;
-}background: rgba(0, 0, 0, 0.2)
+}
+background: rgba(0, 0, 0, 0.2)
 }
 </style>
 
 <script type="text/javascript">
 (function($) {  
-	console.info("进来了;");
 	var postUrl = "/getImg";
 	$.ajax({
         url:postUrl,
@@ -354,64 +345,10 @@ aside ul li .color {
 	    }  
 	  };  
 	  resize();  
-	  
-	  
-	 
-	  
 	})(jQuery); 
+</script>	
 	
-	$(function(){
-		$("#submit").click(function(){
-			$.ajax({
-                cache: true,
-                type: "POST",
-                url:"/tuling/getContent",
-                data:$('#textForm').serialize(),// 你的formid
-                async: false,
-                error: function(request) {
-                    console.info("Connection error");
-                },
-                success: function(data) {
-                    $("#answerDiv").append(data.showMessage+"<br/>");
-                    $("#search").val("");
-                }
-            });
-			
-		});
-		
-		function enterClick(){
-		
-			return false;
-		}
-		
-	})
-	/* enter不自动提交表单 */
-	 document.onkeydown = function(event) {
-	        var target, code, tag;
-	        if (!event) {
-	            event = window.event; //针对ie浏览器
-	            target = event.srcElement;
-	            code = event.keyCode;
-	            if (code == 13) {
-	                tag = target.tagName;
-	                if (tag == "TEXTAREA") { return true; }
-	                else { return false; }
-	            }
-	        }
-	        else {
-	            target = event.target; //针对遵循w3c标准的浏览器，如Firefox
-	            code = event.keyCode;
-	            if (code == 13) {
-	                tag = target.tagName;
-	                if (tag == "INPUT") { return false; }
-	                else { return true; }
-	            }
-	        }
-	    };
-	
-	</script>
-	
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(function(){
 		var firstLoad = true;
 		 function headHtml(text,isRight){
@@ -462,13 +399,21 @@ aside ul li .color {
 		            $("#search").val("");
 		        	setTimeout(function(){
 		        		$("#messages").append(headHtml(data.showMessage,false));
+		        		$("#messages").scrollTop( $('#messages')[0].scrollHeight );
 			    	    $("#messages").trigger("refresh");
 		        	}, 1000);
 		        	
 		        }
 		    });
-
 		});
+		
+		$(':input').bind('keyup', function(event){
+		   if (event.keyCode=="13"){
+		    	$("#send").trigger("click");
+		    return false;
+		   }
+		});
+		
 	});
 	</script>
 	
@@ -479,9 +424,8 @@ aside ul li .color {
 <body>
 	<span id="spanTitle">上升ing...</span>
 	
-	<div id="answerDiv" style="color: white;" ></div>
 	<div id="bgDiv"></div>
-	<div id="bgBox"  >
+	<div id="bgBox">
 	
 	<!-- 聊天内容框框 -->
 	<section id="container" style="visibility:hidden"  >
@@ -495,7 +439,7 @@ aside ul li .color {
 	            <i class="material-icons">search</i>
 	        </header>
 	        <ul>
-	            <%--<li>
+	            <li>
 	                <div class="avatar">
 	                    <img alt="avatar" src="/assets/coolgirl.jpg" />
 	                    <div class="color"></div>
@@ -519,7 +463,7 @@ aside ul li .color {
 	                <div class="time">18:52
 	                </div>
 	            </li>
-	        --%></ul>
+	        </ul>
 	    </aside>
 	    <section id="main" >
 	        <section id="messages">
@@ -531,7 +475,7 @@ aside ul li .color {
 	        </footer>
 	    </section>
 	</section>
-	</div>
+</div>
 	
 </body>
 </html>
