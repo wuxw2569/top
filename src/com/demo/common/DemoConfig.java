@@ -4,6 +4,7 @@ import com.demo.blog.BlogController;
 import com.demo.common.model._MappingKit;
 import com.demo.index.DouBanController;
 import com.demo.index.IndexController;
+import com.demo.index.TuLingController;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -56,7 +57,10 @@ public class DemoConfig extends JFinalConfig {
 	 * 配置路由
 	 */
 	public void configRoute(Routes me) {
+		// 图灵机器人Controller
+		me.add("/tuling",TuLingController.class);
 		
+		// 豆瓣V2api 电影系列
 		me.add("/v2/movie",DouBanController.class);
 		me.add("/", IndexController.class, "/index");	// 第三个参数为该Controller的视图存放路径
 		me.add("/blog", BlogController.class);			// 第三个参数省略时默认与第一个参数值相同，在此即为 "/blog"
