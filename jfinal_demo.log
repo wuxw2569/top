@@ -322,3 +322,11 @@ Caused by: java.lang.RuntimeException: File not found : E:\Workspaces\myEclipse1
 	at com.jfinal.template.Engine.getTemplate(Engine.java:133)
 	at com.jfinal.render.TemplateRender.render(TemplateRender.java:61)
 	... 25 more
+
+2017-06-09 09:29:03
+[ERROR]-[Thread: main]-[com.jfinal.kit.LogKit.error()]: port: 80 already in use!
+java.lang.IllegalStateException: port: 80 already in use!
+	at com.jfinal.server.JettyServer.doStart(JettyServer.java:87)
+	at com.jfinal.server.JettyServer.start(JettyServer.java:70)
+	at com.jfinal.core.JFinal.start(JFinal.java:159)
+	at com.demo.common.DemoConfig.main(DemoConfig.java:38)
