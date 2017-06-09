@@ -10,8 +10,10 @@ public class TuLingUtil {
 	static final String tulingApi = "http://www.tuling123.com/openapi/api";
 	
 	static final String tulingKey = "b32dd747264a1c8de9f5003cadd4845c";
-	
 	public static void main(String[] args) {
+		System.out.println(sayThing(""));
+	}
+	public static void main2(String[] args) {
 		
 		boolean flag = true;
 		System.out.println("请先输入文字:\n");
