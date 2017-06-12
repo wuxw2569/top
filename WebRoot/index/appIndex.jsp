@@ -1,15 +1,20 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
 <head>
 <base href="<%=basePath%>">
-
 <title>上升ing</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="上升,keyword2,keyword3">
 <script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/js/jquery.scrollTo-min.js"></script>
 <link rel="icon" href="../img/toping2.ico" type="image/x-icon"/>
 <script  type="text/javascript" >
 var _hmt = _hmt || [];
@@ -18,101 +23,132 @@ var _hmt = _hmt || [];
   hm.src = "https://hm.baidu.com/hm.js?1a00bdc215756c02925a322ce18ab928";
   var s = document.getElementsByTagName("script")[0]; 
   s.parentNode.insertBefore(hm, s);
-  
-  
-	browserRedirect();
 })();
-
-function browserRedirect() {
-    var sUserAgent = navigator.userAgent.toLowerCase();
-    var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
-    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
-    var bIsMidp = sUserAgent.match(/midp/i) == "midp";
-    var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
-    var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
-    var bIsAndroid = sUserAgent.match(/android/i) == "android";
-    var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
-    var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
-    if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
-        window.location.href=B页面;
-    }
-}
 </script>
-
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
 <style type="text/css">
-body {  
-    margin: 0;  
-    overflow: hidden;  
-    background-color: #333;  
-}  
-#bgBox {  
-    height: 100%;  
-    width: 100%;  
-    margin: auto;  
-    position: relative;  
-    min-width: 1115px;  
-    max-width: 1366px;  
-    min-height: 599px;  
-    max-height: 768px;  
-}  
-#bgDiv {  
-    position: absolute;  
-    top: 0;  
-    overflow: hidden;  
-    width: 100%;  
-    height: 100%;  
-    max-width: 1366px;  
-    /*这里放置背景图及图片属性*/
-    background-repeat: no-repeat;  
-    background-color: #666;  
-    -webkit-background-size: cover;  
-    -moz-background-size: cover;  
-    -o-background-size: cover;  
-    background-size: cover;  
-}  
-#spanTitle{
-    color: white;
-    font-size: 65px;
-    position: absolute;
-    top: 24px;
-    left: 64px;
-    z-index: 555;
+body.hp {
+	background: #000;
+	color: #fff;
+	margin: 0;
+	font-family: Helvetica, sans-serif, Arial;
+	overflow-x: hidden;
+	overflow-y: auto;
+	backface-visibility: hidden
 }
-@media only screen and (min-height:806px) and (orientation:landscape), screen and (min-width:1433px) and (orientation:landscape) {  
-    #bgBox, #bgDiv {  
-        max-width: 1920px;  
-        max-height: 1080px;  
-    }  
-}
-</style>
 
+#bLogo {
+	height: 40px;
+	width: 98px
+}
+
+
+#bgDiv {
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position-x: center;
+	position: relative;
+	background-size: cover;
+	z-index: 0
+}
+
+
+* {
+	margin: 0;
+	padding: 0
+}
+
+html,body {
+	background: #fff;
+	overflow-x: hidden;
+	-webkit-text-size-adjust: none;
+	color: #000
+}
+
+li {
+	list-style-type: none
+}
+
+
+a,a:visited {
+	text-decoration: none;
+	color: #36b
+}
+
+img {
+	border-width: 0
+}
+
+a:visited,a.sb_link:visited,.sb_link a:visited,.sb_h3 a:visited,.sb_h3 a
+	{
+	text-decoration: none;
+	color: #36b
+}
+
+body {
+	min-width: 0
+}
+
+body {
+	font-family: Helvetica, Arial;
+	font-size: 14px
+}
+
+#hplas {
+	bottom: 10px;
+	right: 10px;
+	z-index: 2
+}
+
+
+#hpla_scroll {
+	position: absolute;
+	display: none;
+	z-index: 1
+}
+
+</style>
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobileoptimized" content="0">
+<style type="text/css">
+#hpla {
+	background-color: #eeeef0;
+	color: #222;
+	letter-spacing: .8px;
+	font-size: 15px;
+	padding-bottom: 50px;
+	width: 100%
+}
+
+#hpla img {
+	width: 100%;
+	padding-top: 30px
+}
+
+</style>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700');
-html,
-body {
-    height: 100%;
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
+
+#msg_inner{
+	font-family: 'Roboto', sans-serif;
     font-weight: 100;
-}
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    color: black;
 }
 #container {
     width: 20%;
     height: 80%;
     display: flex;
-    min-width: 600px;
+    width: 40%;
     float: right;
 }
 aside,
 #main {
     flex-grow: 1;
     height: 100%;
-    min-width: 300px;
-    margin: 20% 8%;
+    width: 30em;
+    text-align:center;
 }
 aside {
     background-color: #2F373F;
@@ -288,17 +324,16 @@ aside ul li .color {
     align-items: center;
     user-select: none;
 }
-background: rgba(0, 0, 0, 0.2)
-}
 </style>
 
+
 <script type="text/javascript">
-(function($) {  
-	var postUrl = "/getImg";
+ $(function(){
+ 	var postUrl = "/getImg";
 	$.ajax({
         url:postUrl,
         type:'GET',
-        dataType:'JSONP',
+        dataType:'JSON',
         success: function(data){ 
 			var jsonObj = eval(data);
 			var jsonLen = 0;
@@ -318,56 +353,7 @@ background: rgba(0, 0, 0, 0.2)
         }
     });	
 	console.info("结束了;");
-	
-	  // 背景图片尺寸  
-	  var imgWidh = 1920,  
-	    imgHeight = 1080;  
-	  // 图片宽高比  
-	  var imgRatio = imgWidh / imgHeight;  
-	  var $bgDiv = $("#bgDiv");  
-	  var offsetLeft = 0,  
-	    offsetTop = 0;  
-	  var resize = function() {  
-	    // 浏览器viewport尺寸  
-	    var winWidth = window.innerWidth,  
-	      winHeight = window.innerHeight;  
-	    // 浏览器viewport宽高比  
-	    var winRatio = winWidth / winHeight;  
-	    if (winWidth > imgWidh) {  
-	      $bgDiv.css({  
-	        width: imgWidh,  
-	        height: imgHeight  
-	      });  
-	    } else {  
-	      if (winRatio > imgRatio) {  
-	        // 屏幕宽高比大于图片宽高比，屏幕高度不足，图片向上偏移  
-	        offsetLeft = 0;  
-	        offsetTop = (Math.ceil(winWidth / imgRatio) - winHeight) / 2;  
-	        $bgDiv.css({  
-	          width: winWidth,  
-	          height: winWidth / imgRatio,  
-	          top: -offsetTop,  
-	          left: offsetLeft  
-	        });  
-	      } else if (winRatio < imgRatio) {  
-	        // 屏幕宽高比大于图片宽高比，屏幕宽度不足，图片向左偏移  
-	        offsetLeft = (Math.ceil(winHeight * imgRatio) - winWidth) / 2;  
-	        offsetTop = 0;  
-	        $bgDiv.css({  
-	          width: winHeight * imgRatio,  
-	          height: winHeight,  
-	          top: offsetTop,  
-	          left: -offsetLeft  
-	        });  
-	      }  
-	    }  
-	  };  
-	  resize();  
-	})(jQuery); 
-</script>	
-	
-<script type="text/javascript">
-	$(function(){
+ 
 		var firstLoad = true;
 		 function headHtml(text,isRight){
 			 var headImg = "/img/headImg/timg (1).jpg";
@@ -433,20 +419,18 @@ background: rgba(0, 0, 0, 0.2)
 		});
 		
 	});
-	</script>
-	
+</script>
 	<!-- 发送按钮小样式 -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-
-<body>
-	<span id="spanTitle">上升ing...</span>
+<body class="hp">
+	<div id="HpContainer">
+		<div id="bgDiv" data-bm="0" style="height: 100%; opacity: 1; background-image: url(&quot;http://cn.bing.com/ImageResolution.aspx?w=375&amp;h=667&amp;t=2017612&quot;);"></div>
+	</div>
 	
-	<div id="bgDiv"></div>
 	<div id="bgBox">
-	
 	<!-- 聊天内容框框 -->
-	<section id="container" style="visibility:hidden"  >
+	<!--  <section id="container" style="visibility:hidden"  >
 	    <aside style="display:none" >
 	        <header>
 	            <div class="avatar">
@@ -492,8 +476,7 @@ background: rgba(0, 0, 0, 0.2)
 	            <textarea id="search" placeholder="Say something..."></textarea><i class="material-icons"  id="send">send</i>
 	        </footer>
 	    </section>
-	</section>
+	</section> -->
 </div>
-	
 </body>
 </html>
