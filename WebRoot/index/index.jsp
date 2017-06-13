@@ -4,12 +4,12 @@
 <base href="<%=basePath%>">
 
 <title>上升ing</title>
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="上升,keyword2,keyword3">
-<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/js/jquery.scrollTo-min.js"></script>
+<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
 <link rel="icon" href="../img/toping2.ico" type="image/x-icon"/>
 <script  type="text/javascript" >
 var _hmt = _hmt || [];
@@ -298,7 +298,7 @@ background: rgba(0, 0, 0, 0.2)
 	$.ajax({
         url:postUrl,
         type:'GET',
-        dataType:'JSONP',
+        dataType:'JSON',
         success: function(data){ 
 			var jsonObj = eval(data);
 			var jsonLen = 0;
@@ -403,8 +403,8 @@ background: rgba(0, 0, 0, 0.2)
 				$("#container").css("visibility","visible");
 			}
 			$("#messages").append(headHtml(searchtml,true));
-		    $("#messages").trigger("refresh");
-		    $.ajax({
+			 $("#messages").scrollTop( $('#messages')[0].scrollHeight );
+		     $.ajax({
 		        cache: true,
 		        type: "POST",
 		        url:"/tuling/getContent",
@@ -417,21 +417,21 @@ background: rgba(0, 0, 0, 0.2)
 		            $("#search").val("");
 		        	setTimeout(function(){
 		        		$("#messages").append(headHtml(data.showMessage,false));
-		        		$("#messages").scrollTop( $('#messages')[0].scrollHeight );
+			    	   $("#messages").scrollTop( $('#messages')[0].scrollHeight );
 			    	    $("#messages").trigger("refresh");
 		        	}, 1000);
 		        	
 		        }
 		    });
+
 		});
 		
 		$(':input').bind('keyup', function(event){
 		   if (event.keyCode=="13"){
 		    	$("#send").trigger("click");
 		    return false;
-		   }
+		   }  
 		});
-		
 	});
 	</script>
 	
@@ -450,7 +450,7 @@ background: rgba(0, 0, 0, 0.2)
 	    <aside style="display:none" >
 	        <header>
 	            <div class="avatar">
-	                <img alt="avatar" src="/assets/coolboy.jpg" />
+	                <!-- <img alt="avatar" src="/assets/coolboy.jpg" /> -->
 	                <div class="color"></div>
 	            </div>
 	            <div>CHAT</div>
@@ -459,7 +459,7 @@ background: rgba(0, 0, 0, 0.2)
 	        <ul>
 	            <li>
 	                <div class="avatar">
-	                    <img alt="avatar" src="/assets/coolgirl.jpg" />
+	                   <!-- <img alt="avatar" src="/assets/coolgirl.jpg" /> -->
 	                    <div class="color"></div>
 	                </div>
 	                <div class="main_li">
@@ -471,7 +471,7 @@ background: rgba(0, 0, 0, 0.2)
 	            </li>
 	            <li>
 	                <div class="avatar">
-	                    <img alt="avatar" src="/assets/coolgirl.jpg" />
+	                  <!--  <img alt="avatar" src="/assets/coolgirl.jpg" /> -->
 	                    <div class="color away"></div>
 	                </div>
 	                <div class="main_li">
