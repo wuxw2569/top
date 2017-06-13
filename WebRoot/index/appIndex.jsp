@@ -6,6 +6,7 @@
 			+ path + "/";
 %>
 
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <head>
 <base href="<%=basePath%>">
@@ -130,24 +131,27 @@ body {
 </style>
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700');
-
+#bgBox{
+    margin: 0 auto; 
+    padding:10px;
+	display:block; 
+	position: absolute;
+	top:50%;
+	left:8%;
+    margin-top: -240px;
+	 right:8%
+}
 #msg_inner{
 	font-family: 'Roboto', sans-serif;
     font-weight: 100;
-    color: black;
+    color: #000000;
 }
 #container {
-    width: 20%;
-    height: 80%;
-    display: flex;
-    width: 40%;
-    float: right;
+    height: 60%;
 }
 aside,
 #main {
     flex-grow: 1;
-    height: 100%;
-    width: 30em;
     text-align:center;
 }
 aside {
@@ -256,6 +260,10 @@ aside ul li .color {
     overflow: auto;
     flex-grow: 2;
     padding: 10px;
+    color: red;
+    height:400px;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
 }
 #messages article {
     display: flex;
@@ -286,6 +294,7 @@ aside ul li .color {
     border-radius: 0 4px 4px 4px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     text-align: left;
+    color: #000000;
 }
 .right {
     flex-direction: row-reverse;
@@ -323,6 +332,14 @@ aside ul li .color {
     justify-content: flex-end;
     align-items: center;
     user-select: none;
+}
+#spanTitle{
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    top: 24px;
+    left: 10%;
+    z-index: 555;
 }
 </style>
 
@@ -425,58 +442,63 @@ aside ul li .color {
 </head>
 <body class="hp">
 	<div id="HpContainer">
-		<div id="bgDiv" data-bm="0" style="height: 100%; opacity: 1; background-image: url(&quot;http://cn.bing.com/ImageResolution.aspx?w=375&amp;h=667&amp;t=2017612&quot;);"></div>
+	
+		<div id="bgDiv" data-bm="0" style="height: 100%; opacity: 1;">
+		<span id="spanTitle">上升ing...</span>
+			<div id="bgBox">
+				<!-- 聊天内容框框 -->
+				<section id="container" style="visibility:hidden"  >
+				    <aside style="display:none" >
+				        <header>
+				            <div class="avatar">
+				                <img alt="avatar" src="" />
+				                <div class="color"></div>
+				            </div>
+				            <div>CHAT</div>
+				            <i class="material-icons">search</i>
+				        </header>
+				        <ul>
+				            <li>
+				                <div class="avatar">
+				                    <img alt="avatar" src="" />
+				                    <div class="color"></div>
+				                </div>
+				                <div class="main_li">
+				                    <div class="username">Marina Braga</div>
+				                    <div class="text">Ok. Bye!</div>
+				                </div>
+				                <div class="time">Now
+				                </div>
+				            </li>
+				            <li>
+				                <div class="avatar">
+				                    <img alt="avatar" src="" />
+				                    <div class="color away"></div>
+				                </div>
+				                <div class="main_li">
+				                    <div class="username">Isah Cacique</div>
+				                    <div class="text">Party tonight, ok?</div>
+				                </div>
+				                <div class="time">18:52
+				                </div>
+				            </li>
+				        </ul>
+				    </aside>
+				    <section id="main" >
+				        <section id="messages">
+				        	
+				        </section>
+				        <footer style="visibility:visible">
+				            <i class="material-icons">attach_file</i>
+				            <textarea id="search" placeholder="Say something..."></textarea><i class="material-icons"  id="send">send</i>
+				        </footer>
+				    </section>
+				</section>
+			</div>
+		
+		</div>
 	</div>
 	
-	<div id="bgBox">
-	<!-- 聊天内容框框 -->
-	<!--  <section id="container" style="visibility:hidden"  >
-	    <aside style="display:none" >
-	        <header>
-	            <div class="avatar">
-	                <img alt="avatar" src="/assets/coolboy.jpg" />
-	                <div class="color"></div>
-	            </div>
-	            <div>CHAT</div>
-	            <i class="material-icons">search</i>
-	        </header>
-	        <ul>
-	            <li>
-	                <div class="avatar">
-	                    <img alt="avatar" src="/assets/coolgirl.jpg" />
-	                    <div class="color"></div>
-	                </div>
-	                <div class="main_li">
-	                    <div class="username">Marina Braga</div>
-	                    <div class="text">Ok. Bye!</div>
-	                </div>
-	                <div class="time">Now
-	                </div>
-	            </li>
-	            <li>
-	                <div class="avatar">
-	                    <img alt="avatar" src="/assets/coolgirl.jpg" />
-	                    <div class="color away"></div>
-	                </div>
-	                <div class="main_li">
-	                    <div class="username">Isah Cacique</div>
-	                    <div class="text">Party tonight, ok?</div>
-	                </div>
-	                <div class="time">18:52
-	                </div>
-	            </li>
-	        </ul>
-	    </aside>
-	    <section id="main" >
-	        <section id="messages">
-	        	
-	        </section>
-	        <footer style="visibility:visible">
-	            <i class="material-icons">attach_file</i>
-	            <textarea id="search" placeholder="Say something..."></textarea><i class="material-icons"  id="send">send</i>
-	        </footer>
-	    </section>
-	</section> -->
-</div>
+	
 </body>
 </html>

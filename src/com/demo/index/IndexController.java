@@ -19,6 +19,10 @@ public class IndexController extends Controller {
 		render("/index/index.jsp");
 	}
 	
+	public void toAppIndex() {
+		
+		render("/index/appIndex.jsp");
+	}
 	
 	public void getImg() {
 		String postUrl =  "http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=10";
