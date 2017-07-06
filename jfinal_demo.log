@@ -330,3 +330,19 @@ java.lang.IllegalStateException: port: 80 already in use!
 	at com.jfinal.server.JettyServer.start(JettyServer.java:70)
 	at com.jfinal.core.JFinal.start(JFinal.java:159)
 	at com.demo.common.DemoConfig.main(DemoConfig.java:38)
+
+2017-06-13 09:50:24
+[ERROR]-[Thread: main]-[com.jfinal.kit.LogKit.error()]: port: 80 already in use!
+java.lang.IllegalStateException: port: 80 already in use!
+	at com.jfinal.server.JettyServer.doStart(JettyServer.java:87)
+	at com.jfinal.server.JettyServer.start(JettyServer.java:70)
+	at com.jfinal.core.JFinal.start(JFinal.java:159)
+	at com.demo.common.DemoConfig.main(DemoConfig.java:39)
+
+2017-06-13 10:00:13
+[ERROR]-[Thread: main]-[com.jfinal.kit.LogKit.error()]: port: 80 already in use!
+java.lang.IllegalStateException: port: 80 already in use!
+	at com.jfinal.server.JettyServer.doStart(JettyServer.java:87)
+	at com.jfinal.server.JettyServer.start(JettyServer.java:70)
+	at com.jfinal.core.JFinal.start(JFinal.java:159)
+	at com.demo.common.DemoConfig.main(DemoConfig.java:39)
